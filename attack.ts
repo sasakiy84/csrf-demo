@@ -1,9 +1,11 @@
 import expressServer from "express";
 const app = expressServer();
 
+const ORIGIN_BASE_URL = "http://localhost:3000";
+
 app.get("/3-post-password-change", (_req, res) => {
   res.send(`
-  <form id="form" action="http://localhost:3000/3-post-password-change/" method="post" style="display: none;">
+  <form id="form" action="${ORIGIN_BASE_URL}/3-post-password-change/" method="post" style="display: none;">
   <input name="newPassword" type=text value="aaaaaaa"></input>
   <button type="submit">submit</buttion>
   </form>
@@ -16,7 +18,7 @@ app.get("/3-post-password-change", (_req, res) => {
 
 app.get("/4-post-password-change", (_req, res) => {
   res.send(`
-  <form id="form" action="http://localhost:3000/4-post-password-change/" method="post" style="display: none;">
+  <form id="form" action="${ORIGIN_BASE_URL}/4-post-password-change/" method="post" style="display: none;">
   <input name="newPassword" type="text" value="aaaaaaa"></input>
   <input name="csrfToken" type="hidden" value="aaaaaaa"></input>
   <button type="submit">submit</buttion>
@@ -33,9 +35,9 @@ app.get("/4-post-password-change-with-iframe", (_req, res) => {
     <iframe id="inlineFrame"
         width="400"
         height="300"
-        src="http://localhost:3000/4-post-password-change">
+        src="${ORIGIN_BASE_URL}/4-post-password-change">
     </iframe>
-    <form id="form" action="http://localhost:3000/4-post-password-change/" method="post" style="display: none;">
+    <form id="form" action="${ORIGIN_BASE_URL}/4-post-password-change/" method="post" style="display: none;">
     <input name="newPassword" type="text" value="aaaaaaa"></input>
     <input name="csrfToken" type="hidden" value="aaaaaaa"></input>
     <button type="submit">submit</buttion>
