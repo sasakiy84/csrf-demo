@@ -75,5 +75,38 @@ app.get("/3-post-password-change-with-xml-http-request", (_req, res) => {
   `);
 });
 
+app.get("/4-prepare-check-referer-or-origin-or-metadata", (_req, res) => {
+  res.send(
+    `<form action="http://localhost:3000/4-prepare-check-headers" method="post">
+      <button type="submit">submit</buttion>
+    </form>`
+  );
+});
+
+app.get("/4-prepare-custom-header", (_req, res) => {
+  res.send(
+    `
+      <button id="button">submit</button>
+      <p id="response"></p>
+      <script>
+          const button = document.getElementById("button")
+          button.addEventListener("click", () => {
+              const req = new XMLHttpRequest();
+              req.open("POST", "${ORIGIN_BASE_URL}/4-prepare-check-headers")
+              req.setRequestHeader("x-powered-by-myapp", "myapp")
+              req.onreadystatechange = () => {
+                  if(req.readyState === XMLHttpRequest.DONE) {
+                      console.log("status: " + req.status)
+                      console.log("response: " + req.responseText)
+                      document.getElementById("response").innerText = req.responseText
+                  }
+              }
+              req.send()
+          })
+      </script>
+    `
+  );
+});
+
 console.log("app listening on port: 4000");
 app.listen(4000);
