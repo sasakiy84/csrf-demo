@@ -5,6 +5,15 @@ import crypto from "node:crypto";
 export const csrfTokenDefenceRouter = () => {
   const router = Router();
 
+  router.get("/3-post-password-change-dangerous", (_req, res) => {
+    res.send(`
+      <form id="form" action="http://localhost:3000/3-post-password-change-dangerous" method="post">
+      <input name="newPassword" type="text" value=""></input>
+      <button type="submit">submit</buttion>
+      </form>
+      `);
+  });
+
   router.post("/3-post-password-change-dangerous", (req, res) => {
     const sessionId = req.cookies["sessionId"];
     const { newPassword } = req.body;
