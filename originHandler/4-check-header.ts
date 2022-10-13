@@ -20,7 +20,7 @@ export const checkHeaderRouter = () => {
             button.addEventListener("click", () => {
                 const req = new XMLHttpRequest();
                 req.open("POST", "http://localhost:3000/4-prepare-check-headers")
-                req.setRequestHeader("x-powered-by-myapp", "myapp")
+                req.setRequestHeader("X-Powered-By-Myapp", "myapp")
                 req.onreadystatechange = () => {
                     if(req.readyState === XMLHttpRequest.DONE) {
                         console.log("status: " + req.status)
@@ -37,7 +37,7 @@ export const checkHeaderRouter = () => {
   router.post("/4-prepare-check-headers", (req, res) => {
     const referer = req.get("Referer");
     const origin = req.get("Origin");
-    const customHeader = req.get("x-powered-by-myapp");
+    const customHeader = req.get("X-Powered-By-Myapp");
     const SecFetchSite = req.get("Sec-Fetch-Site");
     // chech headers
     console.log("referer: " + referer);

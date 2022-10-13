@@ -108,5 +108,30 @@ app.get("/4-prepare-custom-header", (_req, res) => {
   );
 });
 
-console.log("app listening on port: 4000");
-app.listen(4000);
+app.get("/4-prepare-custom-header", (_req, res) => {
+  res.send(
+    `
+      <button id="button">submit</button>
+      <p id="response"></p>
+      <script>
+          const button = document.getElementById("button")
+          button.addEventListener("click", () => {
+              const req = new XMLHttpRequest();
+              req.open("POST", "${ORIGIN_BASE_URL}/4-prepare-check-headers")
+              req.setRequestHeader("X-Powered-By-Myapp", "myapp")
+              req.onreadystatechange = () => {
+                  if(req.readyState === XMLHttpRequest.DONE) {
+                      console.log("status: " + req.status)
+                      console.log("response: " + req.responseText)
+                      document.getElementById("response").innerText = req.responseText
+                  }
+              }
+              req.send()
+          })
+      </script>
+    `
+  );
+});
+
+console.log("app listening on port: 5000");
+app.listen(5000);
