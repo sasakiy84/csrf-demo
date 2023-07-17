@@ -60,7 +60,7 @@ export const csrfTokenDefenceRouter = () => {
         <iframe id="inlineFrame"
             width="400"
             height="300"
-            src="http://localhost:3000/4-post-password-change">
+            src="http://localhost:3000/3-post-password-change-csrf-token">
         </iframe>
         <form id="form" action="http://localhost:3000/4-post-password-change/" method="post" style="display: none;">
         <input name="newPassword" type="text" value="aaaaaaa"></input>
