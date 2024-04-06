@@ -18,7 +18,10 @@ export const dangerousGetRouter = () => {
         userName: name,
       };
       console.log(`registered sessionId ${sessionId} for user ${name}`);
-      res.cookie("sessionId", sessionId);
+      res.cookie("sessionId", sessionId, {
+        sameSite: "none",
+        secure: true,
+      });
       res.send("logined!");
     } else {
       res.send("name or password is incorrect");
